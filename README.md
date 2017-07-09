@@ -34,7 +34,7 @@ The owner of the repair center has requested to build the web app with some sort
 
 Example flow is like this:
 
-![text](https://lh6.googleusercontent.com/kH3alM0BBVsHOv2bn5UD-uP7h8Y328GNcteWsveUTkzfGLczggh7QCosPXRXWdUzigO7tnXgD434ews=w2560-h1264)
+![Repair Center example flow](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/repair-center.png)
 
 ## Reference
 
