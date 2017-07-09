@@ -1,6 +1,5 @@
 import { applyMiddleware, compose, createStore as createReduxStore, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import ticketReducer from '../actionsAndReducers/ticket'
 import createHistory from 'history/createBrowserHistory'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 
@@ -31,7 +30,6 @@ const createStore = (initialState = {}) => {
   const store = createReduxStore(
     combineReducers({
       location: routerReducer,
-      ticket: ticketReducer
     }),
     initialState,
     composeEnhancers(
