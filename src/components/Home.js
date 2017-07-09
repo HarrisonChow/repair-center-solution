@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 export const HomeView = () => (
   <div>
-    <Link to='/product-category' className='btn btn-secondary d-block'>New ticket</Link>
-    <Link to='/ticket-summary' className='btn btn-secondary d-block'>View my ticket</Link>
+    <Link to='/category' className='btn btn-secondary d-block'>New ticket</Link>
+    <Link to='/summary' className='btn btn-secondary d-block'>View my ticket</Link>
   </div>
 )
 
