@@ -60,7 +60,7 @@ The owner of the repair center has requested to build the web app with some sort
 
 Example flow is like this:
 
-![Repair Center example flow](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/repair-center.png)
+![Repair Center example flow](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/tutorial/repair-center.png)
 
 ### Part1: Category
 1. Create Category components (Category.js) under src/components
@@ -90,6 +90,8 @@ import Category from '../components/Category'
 ```js
 <Route path='/category' component={Category} />
 ```
+
+![Category page](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/tutorial/categoryPage.png)
 
 3. Time for action and reducer
 
@@ -162,6 +164,7 @@ Add ticket reducer to store
 4. Create our first container CategoryContainer.js under src/**containers**
 
 ```js
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import Category from '../components/Category'
 import { setCategory } from '../actionsAndReducers/ticket'
@@ -170,11 +173,7 @@ const mapDispatchToProps = {
   setCategory
 }
 
-const mapStateToProps = (state) => ({
-  ticket: state.ticket,
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Category)
+export default withRouter(connect(null, mapDispatchToProps)(Category))
 ```
 
 5. Update component Category.js to dispatch setCategory on click
@@ -202,6 +201,48 @@ import CategoryContainer from '../containers/CategoryContainer'
 <Route path='/category' component={CategoryContainer} />
 ```
 
+![Category page with dipatched action](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/tutorial/categoryPageWithAction.gif)
+
+7. On UI, we need to show the button as active when a category is selected
+
+We want know what category has been selected, so we need to pass the redux state to the Category component. So on src/containers/CategoryContainers.js
+
+...
+```js
+const mapDispatchToProps = {
+  setCategory
+}
+
+const mapStateToProps = (state) => ({
+  ticket: state.ticket,
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Category))
+```
+
+and on Category component, we need to compare current button with the category we have selected. Go to src/components/Category.js and update
+
+...
+```js
+const Category = ({ ticket, setCategory }) => (
+  <form>
+    {['IPhone', 'Macbook', 'IPad'].map((category, index) => (
+      <Link to='/product-model'
+        className={`btn d-block btn-secondary ${category === ticket.category ? 'active' : ''}`}
+        key={index} onClick={() => setCategory(category)}>{category}
+      </Link>
+    ))}
+  </form>
+)
+
+Category.propTypes = {
+  ticket: PropTypes.object.isRequired,
+  setCategory: PropTypes.func.isRequired
+}
+```
+....
+
+![Category page with enable state](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/tutorial/categoryPageWithEnable.png)
 
 ## Reference
 
