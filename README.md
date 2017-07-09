@@ -201,7 +201,7 @@ import CategoryContainer from '../containers/CategoryContainer'
 <Route path='/category' component={CategoryContainer} />
 ```
 
-![Category page with dipatched action](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/tutorial/categoryPageWithAction.gif)
+![Category page with dipatched action](https://raw.githubusercontent.com/jchappypig/repair-center/master/src/assets/tutorial/CategoryPageWithAction.gif)
 
 7. On UI, we need to show the button as active when a category is selected
 
