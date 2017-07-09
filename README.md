@@ -22,6 +22,20 @@ $ yarn
 $ yarn start
 ```
 
+## Tutorial
+
+### About
+
+In this workshop, we will be using React and Redux to create web app for a repair center. Customer can visit the web app and log a ticket about the repairing devise, including its category, model and issue description.
+
+### Requirements
+
+The owner of the repair center has requested to build the web app with some sort of intelligence — based on what customer answered previously, the next set of questions should change dynamically.
+
+Example flow is like this:
+
+![text](https://lh6.googleusercontent.com/kH3alM0BBVsHOv2bn5UD-uP7h8Y328GNcteWsveUTkzfGLczggh7QCosPXRXWdUzigO7tnXgD434ews=w2560-h1264)
+
 ## Reference
 
 * This project is build on top of boilerplate
