@@ -65,7 +65,7 @@ Example flow is like this:
 
 ![Repair Center example flow](../master/src/assets/tutorial/repair-center.png?raw=true)
 
-### Part1: device category
+### Part 1: device category
 1. Create Category components (Category.js) under src/components
 
 ```js
@@ -82,6 +82,8 @@ const Category = () => (
 
 export default Category
 ```
+
+
 2. Create route to go to category page
 
 Go to src/routes/index.js and add the following route
@@ -95,6 +97,8 @@ import Category from '../components/Category'
 ```
 
 ![Category page](../master/src/assets/tutorial/categoryPage.png?raw=true)
+
+
 
 3. Time for action and reducer
 
@@ -139,7 +143,9 @@ export default function ticketReducer (state = initialState, action) {
 
 ```
 
-5. connect reducer with redux store
+
+
+4. connect reducer with redux store
 
 Go to src/store/createStore.js
 
@@ -164,7 +170,9 @@ Add ticket reducer to store
 ```
 
 
-4. Create our first container CategoryContainer.js under src/**containers**
+
+
+5. Create our first container CategoryContainer.js under src/**containers**
 
 ```js
 import { withRouter } from 'react-router'
@@ -179,7 +187,9 @@ const mapDispatchToProps = {
 export default withRouter(connect(null, mapDispatchToProps)(Category))
 ```
 
-5. Update component Category.js to dispatch setCategory on click
+
+
+6. Update component Category.js to dispatch setCategory on click
 
 ...
 ```js
@@ -191,7 +201,9 @@ export default withRouter(connect(null, mapDispatchToProps)(Category))
 ```
 ...
 
-6. Nothing happened yet until we connect the route with container CategoryContainer instead of Category
+
+
+7. Nothing happened yet until we connect the route with container CategoryContainer instead of Category
 
 Go to src/routes/index.js. Replace Category component with Category container. Because we need to pass the redux store to component through the container.
 
@@ -206,7 +218,9 @@ import CategoryContainer from '../containers/CategoryContainer'
 
 ![Category page with dipatched action](../master/src/assets/tutorial/categoryPageWithAction.gif?raw=true)
 
-7. On UI, we need to show the button as active when a category is selected
+
+
+8. On UI, we need to show the button as active when a category is selected
 
 We want know what category has been selected, so we need to pass the redux state to the Category component. So on src/containers/CategoryContainers.js
 
@@ -250,6 +264,8 @@ Category.propTypes = {
 ![Category page with enable state](../master/src/assets/tutorial/categoryPageWithEnable.png?raw=true)
 
 
+
+
 ### Fun Time
 It's your turn to create a page that describe what model of your device. For the start, you will need to have a few buttons to be chosen from - 'IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'.
 
@@ -282,7 +298,7 @@ Hint:
 
 .
 
-### Part2: device model
+### Part 2: device model
 1. Create Model components (Model.js) under src/components
 
 ```js
@@ -309,6 +325,8 @@ Model.propTypes = {
 export default Model
 ```
 
+
+
 2. Similar to Catetegory. We create container for Model - ModelContainer.js under src/containers
 
 ```js
@@ -327,6 +345,8 @@ const mapDispatchToProps = {
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Model))
 ```
+
+
 
 3. Add missing action **setModel** and reducer in src/actionsAndReducers/ticket.js
 
@@ -358,6 +378,8 @@ const ACTION_HANDLERS = {
 }
 ```
 
+
+
 4. Add route for /model
 
 ...
@@ -368,6 +390,8 @@ import ModelContainer from '../containers/ModelContainer'
 ```js
 <Route path='/model' component={ModelContainer} />
 ```
+
+
 
 5. Finally, we need to make the model page a bit smart. It should be able to change the set of models according to different categories. The catetory has been stored in ticket state. We can make use of it and create a mapping.
 
@@ -470,13 +494,22 @@ Description.propTypes = {
 export default Description
 ```
 
+
+
 ### Take away challenge
-Create a summary page, which display the details of the repair ticket created.
+Create a summary page, which displays the detail of the repair ticket created.
 
 ![Summary page](../master/src/assets/tutorial/summaryPage.png?raw=true)
+
+
 
 
 ## Reference
 
 * This project is build on top of boilerplate
 [https://github.com/davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
+
+## Sail forward
+
+* [https://egghead.io/courses/getting-started-with-redux](https://egghead.io/courses/getting-started-with-redux)
+* [http://redux.js.org/docs/introduction/](http://redux.js.org/docs/introduction/)
