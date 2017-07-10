@@ -60,9 +60,9 @@ The owner of the repair center has requested to build the web app with some sort
 
 Example flow is like this:
 
-![Repair Center example flow](../master/src/assets/tutorial/repair-center.png?raw=true)
+![Repair Center example flow](../master/src/assets/tutorial/repair-center.png)
 
-### Part1: Category
+### Part1: Devise category
 1. Create Category components (Category.js) under src/components
 
 ```js
@@ -91,7 +91,7 @@ import Category from '../components/Category'
 <Route path='/category' component={Category} />
 ```
 
-![Category page](../master/src/assets/tutorial/categoryPage.png?raw=true)
+![Category page](../master/src/assets/tutorial/categoryPage.png)
 
 3. Time for action and reducer
 
@@ -190,7 +190,7 @@ export default withRouter(connect(null, mapDispatchToProps)(Category))
 
 6. Nothing happened yet until we connect the route with container CategoryContainer instead of Category
 
-Go to src/routes/index.js
+Go to src/routes/index.js. Replace Category component with Category container. Because we need to pass the redux store to component through the container.
 
 ...
 ```js
@@ -201,7 +201,7 @@ import CategoryContainer from '../containers/CategoryContainer'
 <Route path='/category' component={CategoryContainer} />
 ```
 
-![Category page with dipatched action](../master/src/assets/tutorial/CategoryPageWithAction.gif?raw=true)
+![Category page with dipatched action](../master/src/assets/tutorial/categoryPageWithAction.gif)
 
 7. On UI, we need to show the button as active when a category is selected
 
@@ -224,10 +224,12 @@ and on Category component, we need to compare current button with the category w
 
 ...
 ```js
+import PropTypes from 'prop-types'
+
 const Category = ({ ticket, setCategory }) => (
   <form>
     {['IPhone', 'Macbook', 'IPad'].map((category, index) => (
-      <Link to='/product-model'
+      <Link to='/model'
         className={`btn d-block btn-secondary ${category === ticket.category ? 'active' : ''}`}
         key={index} onClick={() => setCategory(category)}>{category}
       </Link>
@@ -242,7 +244,145 @@ Category.propTypes = {
 ```
 ....
 
-![Category page with enable state](../master/src/assets/tutorial/categoryPageWithEnable.png?raw=true)
+![Category page with enable state](../master/src/assets/tutorial/categoryPageWithEnable.png)
+
+
+### Challenges
+It's your turn to create a page that describe what model of your devise. For the start, you will need to have a few buttons to be chosen from - 'IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'.
+
+![Model page](../src/assets/tutorial/modelPage.png)
+
+Hint:
+* Reference code in Category page
+* To do list: component, container, action, reducer, route
+* solution is right afterward. DO NOT LOOK. Try it yourself first.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+### Part2: Devise model
+1. Create Model components (Model.js) under src/components
+
+```js
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+
+const Model = ({ ticket, setModel }) => (
+  <form>
+    {['IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'].map((model, index) => (
+      <Link to='/issue-description'
+        className={`btn btn-secondary d-block  ${model === ticket.model ? 'active' : ''}`}
+        key={index} onClick={() => setModel(model)}>{model}
+      </Link>
+    ))}
+  </form>
+)
+
+Model.propTypes = {
+  ticket: PropTypes.object,
+  setModel: PropTypes.func
+}
+```
+
+2. Similar to Catetegory. We create container for Model - ModelContainer.js under src/containers
+
+```js
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+import Model from '../components/Model'
+import { setModel } from '../actionsAndReducers/ticket'
+
+const mapStateToProps = (state) => ({
+  ticket: state.ticket,
+})
+
+const mapDispatchToProps = {
+  setModel
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Model))
+```
+
+3. Add missing action **setModel** and reducer in src/actionsAndReducers/ticket.js
+
+...
+```js
+export const SET_MODEL = 'SET_MODEL'
+```
+...
+```js
+export function setModel (model) {
+  return {
+    type: SET_MODEL,
+    model
+  }
+}
+```
+...
+```js
+export const actions = {
+  setCategory,
+  setModel,
+  setDescription,
+}
+```
+...
+```js
+const ACTION_HANDLERS = {
+  [SET_CATEGORY]: (state, action) => ({ ...state, category: action.category }),
+  [SET_MODEL]: (state, action) => ({ ...state, model: action.model }),
+}
+```
+
+4. Add route for /model
+
+...
+```js
+import ModelContainer from '../containers/ModelContainer'
+```
+...
+```js
+<Route path='/model' component={ModelContainer} />
+```
+
+5. Finally, we need to make the model page a bit smart. It should be able to change the set of models according to different categories. The catetory has been stored in ticket state. We can make use of it and create a mapping.
+
+```js
+const models = {
+  IPhone: ['IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'],
+  Macbook: ['Macbook Pro', 'Macbook Air'],
+  IPad: ['IPad Pro', 'IPad', 'IPad mini'],
+}
+
+const modelsForCategory = (category) => {
+  return models[category] || models.IPhone
+}
+```
+
+```js
+const Model = ({ ticket, setModel }) => (
+  <form>
+    {modelsForCategory(ticket.category).map((model, index) => (
+      <Link to='/issue-description'
+        className={`btn btn-secondary d-block  ${model === ticket.model ? 'active' : ''}`}
+        key={index} onClick={() => setModel(model)}>{model}
+      </Link>
+    ))}
+  </form>
+)
+```
+
+
 
 ## Reference
 
