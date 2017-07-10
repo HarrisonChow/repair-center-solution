@@ -55,7 +55,7 @@ $ yarn start
 
 ### About
 
-In this workshop, we will be using React and Redux to create web app for a repair center. Customer can visit the web app and log a ticket about the repairing devise, including its category, model and issue description.
+In this workshop, we will be using React and Redux to create web app for a repair center. Customer can visit the web app and log a ticket about the repairing device, including its category, model and issue description.
 
 ### Requirements
 
@@ -65,7 +65,7 @@ Example flow is like this:
 
 ![Repair Center example flow](../master/src/assets/tutorial/repair-center.png?raw=true)
 
-### Part1: Devise category
+### Part1: device category
 1. Create Category components (Category.js) under src/components
 
 ```js
@@ -250,8 +250,8 @@ Category.propTypes = {
 ![Category page with enable state](../master/src/assets/tutorial/categoryPageWithEnable.png?raw=true)
 
 
-### Challenges
-It's your turn to create a page that describe what model of your devise. For the start, you will need to have a few buttons to be chosen from - 'IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'.
+### Fun Time
+It's your turn to create a page that describe what model of your device. For the start, you will need to have a few buttons to be chosen from - 'IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'.
 
 ![Model page](../master/src/assets/tutorial/modelPage.png?raw=true)
 
@@ -282,7 +282,7 @@ Hint:
 
 .
 
-### Part2: Devise model
+### Part2: device model
 1. Create Model components (Model.js) under src/components
 
 ```js
@@ -398,6 +398,82 @@ const Model = ({ ticket, setModel }) => (
 )
 ```
 
+![Category page with dipatched action](../master/src/assets/tutorial/modelPageDynamic.gif?raw=true)
+
+### Fun Time
+This time, no more select buttons. You will create a page called Description with textarea, allow customer to describe what is wrong with the device
+
+![Description page](../master/src/assets/tutorial/descriptionPage.png?raw=true)
+
+Hint:
+* Reference code in Category page
+* To do list: component, container, action, reducer, route
+* We will need to extend React.Component class instead of stateless component for Description.js. Because we need to get the text area value using handleChange
+[https://facebook.github.io/react/docs/forms.html](https://facebook.github.io/react/docs/forms.html)
+* Use <textarea> tag and <Link> as a button to submit
+* Hint on Description component is right afterward. DO NOT LOOK. Try it yourself first.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+Description.js
+```js
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+
+class Description extends Component {
+  handleChange = (event) => {
+    const { setDescription } = this.props
+    setDescription(event.target.value)
+  }
+
+  render () {
+    const { ticket } = this.props
+    return (
+      <form>
+        <textarea name='description'
+          placeholder='describe your issue'
+          rows='3' cols='50'
+          defaultValue={ticket.description}
+          className='form-control d-block'
+          onChange={this.handleChange} />
+        <Link to='/ticket-summary' className='btn btn-primary'>Submit</Link>
+      </form>
+    )
+  }
+}
+
+Description.propTypes = {
+  ticket: PropTypes.object,
+  setDescription: PropTypes.func
+}
+
+export default Description
+```
+
+### Take away challenge
+Create a summary page, which display the details of the repair ticket created.
+
+![Summary page](../master/src/assets/tutorial/summaryPage.png?raw=true)
 
 
 ## Reference
