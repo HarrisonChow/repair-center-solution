@@ -305,6 +305,8 @@ Model.propTypes = {
   ticket: PropTypes.object,
   setModel: PropTypes.func
 }
+
+export default Model
 ```
 
 2. Similar to Catetegory. We create container for Model - ModelContainer.js under src/containers
@@ -346,7 +348,6 @@ export function setModel (model) {
 export const actions = {
   setCategory,
   setModel,
-  setDescription,
 }
 ```
 ...
@@ -388,7 +389,7 @@ const modelsForCategory = (category) => {
 const Model = ({ ticket, setModel }) => (
   <form>
     {modelsForCategory(ticket.category).map((model, index) => (
-      <Link to='/issue-description'
+      <Link to='/description'
         className={`btn btn-secondary d-block  ${model === ticket.model ? 'active' : ''}`}
         key={index} onClick={() => setModel(model)}>{model}
       </Link>
