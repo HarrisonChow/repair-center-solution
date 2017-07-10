@@ -250,7 +250,7 @@ Category.propTypes = {
 ### Challenges
 It's your turn to create a page that describe what model of your devise. For the start, you will need to have a few buttons to be chosen from - 'IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'.
 
-![Model page](../src/assets/tutorial/modelPage.png?raw=true)
+![Model page](../master/src/assets/tutorial/modelPage.png?raw=true)
 
 Hint:
 * Reference code in Category page
