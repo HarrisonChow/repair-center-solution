@@ -102,7 +102,7 @@ import Category from '../components/Category'
 
 3. Time for action and reducer
 
-Create a file called ticket.js under src/**actionsAndReducers**, which will be in charge of storing actions and reducers for ticke state
+Create a file called ticket.js under src/**actionsAndReducers**, which will be in charge of storing actions and reducers for ticket state
 
 ```js
 // ------------------------------------
@@ -272,7 +272,7 @@ It's your turn to create a page that describe what model of your device. For the
 ![Model page](../master/src/assets/tutorial/modelPage.png?raw=true)
 
 Hint:
-* Reference code in Category page
+* Reference how we create Category
 * To do list: component, container, action, reducer, route
 * solution is right afterward. DO NOT LOOK. Try it yourself first.
 
@@ -327,7 +327,7 @@ export default Model
 
 
 
-2. Similar to Catetegory. We create container for Model - ModelContainer.js under src/containers
+2. Similar to Category. We create container for Model - ModelContainer.js under src/containers
 
 ```js
 import { withRouter } from 'react-router'
@@ -393,7 +393,7 @@ import ModelContainer from '../containers/ModelContainer'
 
 
 
-5. Finally, we need to make the model page a bit smart. It should be able to change the set of models according to different categories. The catetory has been stored in ticket state. We can make use of it and create a mapping.
+5. Finally, we need to make the model page a bit smart. It should be able to change the set of models according to different categories. The category has been stored in ticket state. We can make use of it and create a mapping.
 
 go to src/components/Model.js and update
 
@@ -425,14 +425,14 @@ const Model = ({ ticket, setModel }) => (
 ![Category page with dipatched action](../master/src/assets/tutorial/modelPageDynamic.gif?raw=true)
 
 ### Fun Time
-This time, no more select buttons. You will create a page called Description with textarea, allow customer to describe what is wrong with the device
+This time, no more select buttons. You will create a page called Description with textarea, which allows customers to describe what is wrong with the device
 
 ![Description page](../master/src/assets/tutorial/descriptionPage.png?raw=true)
 
 Hint:
-* Reference code in Category page
+* Reference how we create Category
 * To do list: component, container, action, reducer, route
-* We will need to extend React.Component class instead of stateless component for Description.js. Because we need to get the text area value using handleChange
+* We will need to extend React.Component class instead of stateless component for Description.js. Because we need to get the textarea value using handleChange
 [https://facebook.github.io/react/docs/forms.html](https://facebook.github.io/react/docs/forms.html)
 * Use <textarea> tag and <Link> as a button to submit
 * Hint on Description component is right afterward. DO NOT LOOK. Try it yourself first.
