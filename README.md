@@ -7,6 +7,7 @@ A workshop for [WOMEN WHO CODE Sydney](https://www.womenwhocode.com/sydney), whi
 ## Requirements
 * node `^5.10.0`
 * yarn `^0.23.0` or npm `^3.0.0`
+* Install redux devtool chrome extension
 * Editor of your choise, preferrable VSCode
 
 > Only do the following if you don't have node and yarn installed
@@ -33,6 +34,8 @@ A workshop for [WOMEN WHO CODE Sydney](https://www.womenwhocode.com/sydney), whi
 > ### Download VS Code
 > [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
 >
+> ### Install Redux devtool chrome extension
+> [https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
 ## Installation
 
@@ -366,6 +369,8 @@ import ModelContainer from '../containers/ModelContainer'
 ```
 
 5. Finally, we need to make the model page a bit smart. It should be able to change the set of models according to different categories. The catetory has been stored in ticket state. We can make use of it and create a mapping.
+
+go to src/components/Model.js and update
 
 ```js
 const models = {
