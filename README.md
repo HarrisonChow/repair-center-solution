@@ -60,7 +60,7 @@ The owner of the repair center has requested to build the web app with some sort
 
 Example flow is like this:
 
-![Repair Center example flow](../master/src/assets/tutorial/repair-center.png)
+![Repair Center example flow](https://raw.githubusercontent.com/jchappypig/repair-center-solution/master/src/assets/tutorial/repair-center.png?raw=true)
 
 ### Part1: Devise category
 1. Create Category components (Category.js) under src/components
@@ -91,7 +91,7 @@ import Category from '../components/Category'
 <Route path='/category' component={Category} />
 ```
 
-![Category page](../master/src/assets/tutorial/categoryPage.png)
+![Category page](https://raw.githubusercontent.com/jchappypig/repair-center-solution/master/src/assets/tutorial/categoryPage.png?raw=true)
 
 3. Time for action and reducer
 
@@ -201,7 +201,7 @@ import CategoryContainer from '../containers/CategoryContainer'
 <Route path='/category' component={CategoryContainer} />
 ```
 
-![Category page with dipatched action](../master/src/assets/tutorial/categoryPageWithAction.gif)
+![Category page with dipatched action](https://raw.githubusercontent.com/jchappypig/repair-center-solution/master/src/assets/tutorial/categoryPageWithAction.gif?raw=true)
 
 7. On UI, we need to show the button as active when a category is selected
 
@@ -244,13 +244,13 @@ Category.propTypes = {
 ```
 ....
 
-![Category page with enable state](../master/src/assets/tutorial/categoryPageWithEnable.png)
+![Category page with enable state](https://raw.githubusercontent.com/jchappypig/repair-center-solution/master/src/assets/tutorial/categoryPageWithEnable.png?raw=true)
 
 
 ### Challenges
 It's your turn to create a page that describe what model of your devise. For the start, you will need to have a few buttons to be chosen from - 'IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'.
 
-![Model page](../src/assets/tutorial/modelPage.png)
+![Model page](../src/assets/tutorial/modelPage.png?raw=true)
 
 Hint:
 * Reference code in Category page
@@ -258,16 +258,27 @@ Hint:
 * solution is right afterward. DO NOT LOOK. Try it yourself first.
 
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 
 ### Part2: Devise model
 1. Create Model components (Model.js) under src/components
