@@ -266,7 +266,6 @@ and on Category component, we want to see which button is clicked, and maybe do 
 ```js
 const Category = ({ ticket, setCategory }) => (
   <form>
-    <p>You have selected: {ticket.category}</p>
     {['IPhone', 'Macbook', 'IPad'].map((category, index) => (
       <Link to='#'
         className={`btn d-block btn-secondary ${category === ticket.category ? 'active' : ''}`}
@@ -340,7 +339,6 @@ Hint:
 ```js
 const Category = ({ ticket, setCategory }) => (
   <form>
-    <p>You have selected: {ticket.category}</p>
     {['IPhone', 'Macbook', 'IPad'].map((category, index) => (
       <Link to='/model'
         className={`btn d-block btn-secondary ${category === ticket.category ? 'active' : ''}`}
