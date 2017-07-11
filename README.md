@@ -66,8 +66,7 @@ I am using rails-style structure in this project. Because for smaller project, t
 │   ├── normalize.js         # Browser normalization and polyfills
 │   ├── actionsAndReducers   # Collections of reducers/constants/actions
 │   ├── assets               # Assets required to render components
-│   ├── components           # Presentational React Components
-│   ├── containers           # Connect components to actions and store
+│   ├── components           # React Components (May or may not be connected to actions and store)
 │   ├── routes               # Bootstrap main application routes with store
 │   ├── store                # Create redux store with reducers and middleware
 │   └── styles               # Application-wide styles (generally settings)
