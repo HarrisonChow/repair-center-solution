@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { setCategory } from '../actionsAndReducers/ticket'
 
 const ProductCategory = ({ ticket, setCategory }) => (
   <div>
@@ -20,4 +22,12 @@ ProductCategory.propTypes = {
   setCategory: PropTypes.func
 }
 
-export default ProductCategory
+const mapDispatchToProps = {
+  setCategory
+}
+
+const mapStateToProps = (state) => ({
+  ticket: state.ticket,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCategory)

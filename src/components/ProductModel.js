@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { setModel } from '../actionsAndReducers/ticket'
 
 const ProductModel = ({ ticket, setModel }) => (
   <div>
@@ -30,4 +32,12 @@ ProductModel.propTypes = {
   setModel: PropTypes.func
 }
 
-export default ProductModel
+const mapStateToProps = (state) => ({
+  ticket: state.ticket,
+})
+
+const mapDispatchToProps = {
+  setModel
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductModel)

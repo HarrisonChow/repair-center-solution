@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { setDescription } from '../actionsAndReducers/ticket'
 
-const issueDescription = ({ ticket, setDescription }) => (
+const IssueDescription = ({ ticket, setDescription }) => (
   <form>
     <textarea name='description'
       placeholder='describe your issue'
@@ -14,9 +16,17 @@ const issueDescription = ({ ticket, setDescription }) => (
   </form>
 )
 
-issueDescription.propTypes = {
+IssueDescription.propTypes = {
   ticket: PropTypes.object,
   setDescription: PropTypes.func
 }
 
-export default issueDescription
+const mapStateToProps = (state) => ({
+  ticket: state.ticket,
+})
+
+const mapDispatchToProps = {
+  setDescription
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IssueDescription)
