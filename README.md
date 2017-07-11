@@ -51,6 +51,29 @@ $ yarn
 $ yarn start
 ```
 
+## Project structure
+I am using rails-style structure in this project. Because for smaller project, this structure is flatter. And it's just easier to find things when you know the basic of redux about how it works. You can choose your prefer project structure. Javascript/Redux is not opioninated about it. [http://redux.js.org/docs/faq/CodeStructure.html](http://redux.js.org/docs/faq/CodeStructure.html)
+
+```
+.
+├── build                    # All build-related code
+├── public                   # Static public assets (not imported anywhere in source code)
+├── server                   # Express application that provides webpack middleware
+│   └── main.js              # Server application entry point
+├── src                      # Application source code
+│   ├── index.html           # Main HTML page container for app
+│   ├── main.js              # Application bootstrap and rendering
+│   ├── normalize.js         # Browser normalization and polyfills
+│   ├── actionsAndReducers   # Collections of reducers/constants/actions
+│   ├── assets               # Assets required to render components
+│   ├── components           # Presentational React Components
+│   ├── containers           # Connect components to actions and store
+│   ├── routes               # Bootstrap main application routes with store
+│   ├── store                # Create redux store with reducers and middleware
+│   └── styles               # Application-wide styles (generally settings)
+.
+```
+
 ## Tutorial
 
 ### About
