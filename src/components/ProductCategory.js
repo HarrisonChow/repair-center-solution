@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setCategory } from '../actionsAndReducers/ticket'
 
-const Category = ({ ticket, setCategory }) => (
+const ProductCategory = ({ ticket, setCategory }) => (
   <div>
     <form>
       {['IPhone', 'Macbook', 'IPad'].map((category, index) => (
@@ -17,7 +17,7 @@ const Category = ({ ticket, setCategory }) => (
   </div>
 )
 
-Category.propTypes = {
+ProductCategory.propTypes = {
   ticket: PropTypes.object,
   setCategory: PropTypes.func
 }
@@ -30,4 +30,4 @@ const mapStateToProps = (state) => ({
   ticket: state.ticket,
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Category)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCategory)

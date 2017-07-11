@@ -195,60 +195,52 @@ Add ticket reducer to ```store``` by putting it in ```combineReducers```. See as
 
 
 
-5. Create our first container CategoryContainer.js under src/**containers**
+5. Connect `Category` component with redux and map the needed action to its props
+
+Go to src/components/Category.js
 
 ```js
-import { withRouter } from 'react-router'
+
+...
 import { connect } from 'react-redux'
-import Category from '../components/Category'
 import { setCategory } from '../actionsAndReducers/ticket'
 
 const mapDispatchToProps = {
   setCategory
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Category))
+export default connect(null, mapDispatchToProps)(Category)
 ```
 
 
+6. Now `setCategory` is available in `Category` as a prop. Dispatch `setCategory` on clicking buttons
 
-6. Update component Category.js to dispatch setCategory on click
-
-...
 ```js
+...
+
+const Category = ({ setCategory }) => (
   <div>
     <Link to='#' className='btn btn-secondary d-block' onClick={() => setCategory('IPhone')}>IPhone</Link>
     <Link to='#' className='btn btn-secondary d-block' onClick={() => setCategory('Macbook')}>Macbook</Link>
     <Link to='#' className='btn btn-secondary d-block' onClick={() => setCategory('IPad')}>IPad</Link>
   </div>
-```
-...
-
-
-
-7. Nothing happened yet until we connect the route with container CategoryContainer instead of Category
-
-Go to src/routes/index.js. Replace Category component with Category container. Because we need to pass the redux store to component through the container.
 
 ...
-```js
-import CategoryContainer from '../containers/CategoryContainer'
+
 ```
-...
-```js
-<Route path='/category' component={CategoryContainer} />
-```
+
 
 ![Category page with dipatched action](../master/src/assets/tutorial/categoryPageWithAction.gif?raw=true)
 
 
 
-8. On UI, we need to show the button as active when a category is selected
+7. On UI, we need to show the button as active when a category is selected
 
-We want know what category has been selected, so we need to pass the redux state to the Category component. So on src/containers/CategoryContainers.js
+We want know what category has been selected, so we need to pass the redux state to the Category component. So on src/components/Category.js
+
+```js
 
 ...
-```js
 const mapDispatchToProps = {
   setCategory
 }
@@ -257,10 +249,10 @@ const mapStateToProps = (state) => ({
   ticket: state.ticket,
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Category))
+export default connect(mapStateToProps, mapDispatchToProps)(Category)
 ```
 
-and on Category component, we want to see which button is clicked, and maybe do some styles to the selected button. Go to src/components/Category.js and update ```Category``` to:
+Now that we can read tick state from redux store in the component, we want to see which button is clicked, and maybe do some styles to the selected button. Go to src/components/Category.js and update ```Category``` to:
 
 ```js
 const Category = ({ ticket, setCategory }) => (
@@ -274,8 +266,9 @@ const Category = ({ ticket, setCategory }) => (
     ))}
   </form>
 )
-```
+
 ...
+```
 
 
 Proptypes (needs brief explaination):
@@ -308,7 +301,7 @@ It's your turn to create a page that describe what model of your device. For the
 
 Hint:
 * Reference how we create Category
-* To do list: component, container, action, reducer, route
+* To do list: component, action, reducer, route
 * solution is right afterward. DO NOT LOOK. Try it yourself first.
 
 .
@@ -355,12 +348,14 @@ const Category = ({ ticket, setCategory }) => (
 ```js
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { setModel } from '../actionsAndReducers/ticket'
 
 const Model = ({ ticket, setModel }) => (
   <form>
     {['IPhone6s', 'IPhone7', 'IPhone6s Plus', 'IPhone7 Plus'].map((model, index) => (
-      <Link to='/issue-description'
+      <Link to='/description'
         className={`btn btn-secondary d-block  ${model === ticket.model ? 'active' : ''}`}
         key={index} onClick={() => setModel(model)}>{model}
       </Link>
@@ -373,19 +368,6 @@ Model.propTypes = {
   setModel: PropTypes.func
 }
 
-export default Model
-```
-
-
-
-3. Similar to Category. We create container for Model - ModelContainer.js under src/containers
-
-```js
-import { withRouter } from 'react-router'
-import { connect } from 'react-redux'
-import Model from '../components/Model'
-import { setModel } from '../actionsAndReducers/ticket'
-
 const mapStateToProps = (state) => ({
   ticket: state.ticket,
 })
@@ -394,12 +376,11 @@ const mapDispatchToProps = {
   setModel
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Model))
+export export default connect(mapStateToProps, mapDispatchToProps)(Model)
 ```
 
 
-
-4. Add missing action **setModel** and reducer in src/actionsAndReducers/ticket.js
+3. Add missing action **setModel** and reducer in src/actionsAndReducers/ticket.js
 
 ...
 ```js
@@ -431,20 +412,20 @@ const ACTION_HANDLERS = {
 
 
 
-5. Add route for /model under routes/index.js
+4. Add route for /model under routes/index.js
 
 ...
 ```js
-import ModelContainer from '../containers/ModelContainer'
+import Model from '../components/Model'
 ```
 ...
 ```js
-<Route path='/model' component={ModelContainer} />
+<Route path='/model' component={Model} />
 ```
 
 
 
-6. Finally, we need to make the model page a bit smart. It should be able to change the set of models according to different categories. The category has been stored in ticket state. We can make use of it and create a mapping.
+5. Finally, we need to make the model page a bit smart. It should be able to change the set of models according to different categories. The category has been stored in ticket state. We can make use of it and create a mapping.
 
 go to src/components/Model.js and update
 
@@ -482,7 +463,7 @@ This time, no more select buttons. You will create a page called Description wit
 
 Hint:
 * Reference how we create Category
-* To do list: component, container, action, reducer, route
+* To do list: component, action, reducer, route
 * Use <textarea> tag and <Link> as a button to submit
 * Use onBlur/onChange event in <textarea>
 * get value of the textarea content using `event.target.value`
@@ -513,7 +494,9 @@ Create a Description.js under src/components
 ```js
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { setDescription } from '../actionsAndReducers/ticket'
 
 const Description = ({ ticket, setDescription }) => (
   <form>
@@ -532,7 +515,16 @@ Description.propTypes = {
   setDescription: PropTypes.func
 }
 
-export default Description
+const mapStateToProps = (state) => ({
+  ticket: state.ticket,
+})
+
+const mapDispatchToProps = {
+  setDescription
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Description)
+
 ```
 
 
