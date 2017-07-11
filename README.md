@@ -40,7 +40,7 @@ A workshop for [WOMEN WHO CODE Sydney](https://www.womenwhocode.com/sydney), whi
 ## Installation
 
 ```bash
-$ git clone git@github.com:jchappypig/repair-center-solution.git
+$ git clone git@github.com:jchappypig/repair-center.git
 $ cd repair-center
 $ yarn
 ```
