@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 export const TicketSummary = ({ ticket }) => {
   return (
@@ -25,8 +26,12 @@ export const TicketSummary = ({ ticket }) => {
   )
 }
 
+const mapStateToProps = (state) => ({
+  ticket: state.ticket,
+})
+
 TicketSummary.propTypes = {
   ticket: PropTypes.object
 }
 
-export default TicketSummary
+export default connect(mapStateToProps, null)(TicketSummary)
