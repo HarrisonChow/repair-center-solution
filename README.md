@@ -8,7 +8,7 @@ A workshop for [WOMEN WHO CODE Sydney](https://www.womenwhocode.com/sydney), whi
 * node `^5.10.0`
 * yarn `^0.23.0` or npm `^3.0.0`
 * Install redux devtool chrome extension
-* Editor of your choise, preferrable VSCode
+* Editor of your choice, preferably VSCode
 
 > Only do the following if you don't have node and yarn installed
 >

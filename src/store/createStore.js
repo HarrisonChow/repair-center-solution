@@ -1,5 +1,4 @@
 import { applyMiddleware, compose, createStore as createReduxStore, combineReducers } from 'redux'
-import thunk from 'redux-thunk'
 import ticketReducer from '../actionsAndReducers/ticket'
 import createHistory from 'history/createBrowserHistory'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
@@ -11,7 +10,7 @@ const createStore = (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk, routerMiddleware(history)]
+  const middleware = [routerMiddleware(history)]
 
   // ======================================================
   // Store Enhancers
