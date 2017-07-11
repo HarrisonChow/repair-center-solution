@@ -432,9 +432,9 @@ This time, no more select buttons. You will create a page called Description wit
 Hint:
 * Reference how we create Category
 * To do list: component, container, action, reducer, route
-* We will need to extend React.Component class instead of stateless component for Description.js. Because we need to get the textarea value using handleChange
-[https://facebook.github.io/react/docs/forms.html](https://facebook.github.io/react/docs/forms.html)
 * Use <textarea> tag and <Link> as a button to submit
+* Use onBlur/onChange event in <textarea>
+* get value of the textarea content using `event.target.value`
 * Hint on Description component is right afterward. DO NOT LOOK. Try it yourself first.
 
 .
@@ -460,31 +460,21 @@ Hint:
 .
 Description.js
 ```js
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-class Description extends Component {
-  handleChange = (event) => {
-    const { setDescription } = this.props
-    setDescription(event.target.value)
-  }
-
-  render () {
-    const { ticket } = this.props
-    return (
-      <form>
-        <textarea name='description'
-          placeholder='describe your issue'
-          rows='3' cols='50'
-          defaultValue={ticket.description}
-          className='form-control d-block'
-          onChange={this.handleChange} />
-        <Link to='/ticket-summary' className='btn btn-primary'>Submit</Link>
-      </form>
-    )
-  }
-}
+const Description = ({ ticket, setDescription }) => (
+  <form>
+    <textarea name='description'
+      placeholder='describe your issue'
+      rows='3' cols='50'
+      defaultValue={ticket.description}
+      className='form-control d-block'
+      onBlur={(event) => setDescription(event.target.value)} />
+    <Link to='/summary' className='btn btn-primary'>Submit</Link>
+  </form>
+)
 
 Description.propTypes = {
   ticket: PropTypes.object,
