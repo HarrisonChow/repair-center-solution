@@ -374,7 +374,7 @@ const mapDispatchToProps = {
   setModel
 }
 
-export export default connect(mapStateToProps, mapDispatchToProps)(Model)
+export default connect(mapStateToProps, mapDispatchToProps)(Model)
 ```
 
 
